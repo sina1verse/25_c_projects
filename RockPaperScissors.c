@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
@@ -7,34 +6,30 @@
 
 int game(char gameMove, char playerMove)
 {
-  int result;
-  if (gameMove == 'r' && playerMove == 'r') result=0;
-  if (gameMove == 'r' && playerMove == 'p') result=1;
-  if (gameMove == 'r' && playerMove == 's') result=-1;
+  if (gameMove == playerMove) return(0);
 
-  if (gameMove == 'p' && playerMove == 'r') result=-1;
-  if (gameMove == 'p' && playerMove == 'p') result=0;
-  if (gameMove == 'p' && playerMove == 's') result=1;
+  if (gameMove == 'r' && playerMove == 'p') return(1);
+  else if (gameMove == 'r' && playerMove == 's') return(-1);
 
-  if (gameMove == 's' && playerMove == 'r') result=1;
-  if (gameMove == 's' && playerMove == 'p') result=-1;
-  if (gameMove == 's' && playerMove == 's') result=0;
+  if (gameMove == 'p' && playerMove == 'r') return(-1);
+  else if (gameMove == 'p' && playerMove == 's') return(1);
 
-  return result;
+  if (gameMove == 's' && playerMove == 'r') return(1);
+  else if (gameMove == 's' && playerMove == 'p') return(-1);
 }
 
 int main()
 {
   char gameMove, playerMove;
   int randomNum;
-  time_t t;
   bool flag = 0;
 
-  srand((unsigned)time(&t));
+  srand(time(NULL));
   randomNum = rand()%100;
+
   if (randomNum < 33) {gameMove = 'r';}
-  if (randomNum >= 33 && randomNum < 66) {gameMove = 'p';}
-  if (randomNum >= 66) {gameMove = 's';}
+  else if (randomNum >= 33 && randomNum < 66) {gameMove = 'p';}
+  else r{gameMove = 's';}
 
   printf("\n\n\n\t\t\tRock::r Paper::p Scissors::s\n\n\n");
   printf("your move:: ");
@@ -64,13 +59,6 @@ int main()
     printf("\n\t\t\t----------------------------------------------------\n\t\t\tComputer played:: %c *** You played %c. You win! (: \n\t\t\t----------------------------------------------------\n", gameMove, playerMove);
     break;
   }
-
-
-
-
-
-
-
 
 
   return 0;
