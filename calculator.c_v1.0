@@ -1,0 +1,118 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <math.h>
+#include <ctype.h>
+
+double exeOpe (int num1, char operatoin);
+
+
+int main()
+{
+    double num1, answer;
+    char operation, quitState;
+    bool flag=1;
+
+    printf("\n\n\tcalculator\n\n");
+
+
+    printf("\nAddition: A");
+    printf("\nSubtraction: S");
+    printf("\nMultiplication: M");
+    printf("\nDivision: D");
+    printf("\nLogarithm: L");
+    printf("\nSquare roots: R");
+
+
+
+
+    while(flag == 1)
+    {
+        printf("\n\nEnter the first number:");
+        scanf("%lf", &num1);
+
+        printf("\n\nEnter operation: ");
+        scanf(" %c", &operation);
+        operation = toupper(operation);
+
+        answer = exeOpe (num1, operation);
+        printf("\n%.3lf", answer);
+
+        printf("\n\nIf you want to quit the calculator enter q. Otherwise, enter any key: ");
+        scanf(" %c", &quitState);
+        quitState = toupper(quitState);
+        if (quitState == 'Q'){flag=0;}
+
+    }
+
+
+
+
+
+    return 0;
+}
+
+
+double exeOpe (int num1, char operation)
+{
+    double num2, answer;
+    double gooz = 12;
+
+    switch (operation)
+    {
+
+        case 'A':
+        {
+            printf("\nplease enter the second number: ");
+            scanf("%lf", &num2);
+            answer = num1+num2;
+            break;
+        }
+
+        case 'S':
+        {
+            printf("\nplease enter the second number: ");
+            scanf("%lf", &num2);
+            answer = num1-num2;
+            break;
+        }
+
+        case 'M':
+        {
+            printf("\nplease enter the second number: ");
+            scanf("%lf", &num2);
+            answer = num1*num2;
+            break;
+        }
+
+        case 'D':
+        {
+            printf("\nplease enter the second number: ");
+            scanf("%lf", &num2);
+            answer = num1/num2;
+            break;
+        }
+
+        case 'L':
+        {
+            printf("\nplease enter the base number: ");
+            scanf("%lf", &num2);
+            answer = log(num1)/log(num2);
+            break;
+        }
+
+        case 'R':
+        {
+            answer = sqrt(num1);
+            break;
+        }
+
+
+
+    }
+
+
+
+
+    return(answer);
+
+}
