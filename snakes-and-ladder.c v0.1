@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <time.h>
+
+int main()
+{
+    int pointP1, pointP2, diceNum, counter;
+    bool gameOn=1;
+    bool turn;
+    char diceRoll = 'r';
+    char entry, diceCheck;
+
+    srand(time(NULL));
+
+
+    printf("\n\n\t\t Welcome to Snakes and ladder\n\n");
+    printf("The person with the higher number starts. Roll the dice.\n");
+
+    printf("\nTo roll the dice press r");
+    do{
+    entry=getch();
+    diceCheck = (entry == 'r');
+    }while(!diceCheck);
+
+    pointP1 = rand()%6+1;
+    printf("\n\n::Player 1:  %d :: \n\n", pointP1);
+
+    printf("\nTo roll the dice press r");
+    do{
+    entry=getch();
+    diceCheck = (entry == 'r');
+    }while(!diceCheck);
+
+    pointP2 = rand()%6+1;
+    printf("\n\n::Player 2:  %d :: \n\n", pointP2);
+
+    turn = (pointP2 > pointP1);
+
+    do
+    {
+        switch (turn)
+        {
+            case 0:
+            {
+                printf("\nPlayer 1, to roll the dice press r");
+                do{
+                entry=getch();
+                diceCheck = (entry == 'r');
+                }while(!diceCheck);
+
+                diceNum = rand()%6+1;
+                printf("\n\n::Dice:  %d :: \n\n", diceNum);
+                pointP1 += diceNum;
+                printf("\n\n::Player 1 place: %d :: \n\n", pointP1);
+                break;
+            }
+
+            case 1:
+            {
+                printf("\nPlayer 2, to roll the dice press r");
+                do{
+                entry=getch();
+                diceCheck = (entry == 'r');
+                }while(!diceCheck);
+
+                diceNum = rand()%6+1;
+                printf("\n\n::Dice:  %d :: \n\n", diceNum);
+                pointP2 += diceNum;
+                printf("\n\n::Player 2 place: %d :: \n\n", pointP2);
+                break;
+            }
+        }
+
+
+        turn = !turn;
+        if (pointP1 > 100 || pointP2 > 100){gameOn=0;}
+    }
+    while(gameOn);
+
+    printf("\n\n:: ...END... :: \n\n");
+
+    return (0);
+}
