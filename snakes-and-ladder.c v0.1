@@ -7,7 +7,7 @@ int check_snake_ladder(int playerPoint);
 
 int main()
 {
-    int pointP1, pointP2, diceNum, counter, placeCheck;
+    int pointP1, pointP2, diceNum, placeCheck;
     int snakeHouse[10][1], ladderHouse[7][1];
     bool gameOn=1;
     bool turn;
@@ -53,6 +53,7 @@ int main()
                 entry=getch();
                 diceCheck = (entry == 'r');
                 }while(!diceCheck);
+                system("cls");
 
                 diceNum = rand()%6+1;
                 printf("\n\n::Dice:  %d :: \n\n", diceNum);
@@ -72,6 +73,7 @@ int main()
                 entry=getch();
                 diceCheck = (entry == 'r');
                 }while(!diceCheck);
+                system("cls");
 
                 diceNum = rand()%6+1;
                 printf("\n\n::Dice:  %d :: \n\n", diceNum);
