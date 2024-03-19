@@ -3,11 +3,12 @@
 #include <time.h>
 
 int check_snake_ladder(int playerPoint);
+void display(int pointP1, int pointP2);
 
 
 int main()
 {
-    int pointP1, pointP2, diceNum, counter, placeCheck;
+    int pointP1, pointP2, diceNum, placeCheck;
     int snakeHouse[10][1], ladderHouse[7][1];
     bool gameOn=1;
     bool turn;
@@ -53,15 +54,12 @@ int main()
                 entry=getch();
                 diceCheck = (entry == 'r');
                 }while(!diceCheck);
+                system("cls");
 
                 diceNum = rand()%6+1;
                 printf("\n\n::Dice:  %d :: \n\n", diceNum);
                 pointP1 += diceNum;
 
-                printf("\n\n::Player 1 place: %d :: \n\n", pointP1);
-                placeCheck = check_snake_ladder(pointP1);
-                if (placeCheck>pointP1){pointP1= placeCheck; printf("\n::You climbed the ladder :D . Your new place: %d", pointP1);}
-                if (placeCheck<pointP1){pointP1= placeCheck; printf("\n::You've got bitten by a snake D: . Your new place: %d", pointP1);}
                 break;
             }
 
@@ -72,23 +70,27 @@ int main()
                 entry=getch();
                 diceCheck = (entry == 'r');
                 }while(!diceCheck);
+                system("cls");
 
                 diceNum = rand()%6+1;
                 printf("\n\n::Dice:  %d :: \n\n", diceNum);
                 pointP2 += diceNum;
 
-                printf("\n\n::Player 2 place: %d :: \n\n", pointP2);
-                placeCheck = check_snake_ladder(pointP2);
-                if (placeCheck>pointP2){pointP2= placeCheck; printf("\n::You climbed the ladder :D . Your new place: %d", pointP2);}
-                if (placeCheck<pointP2){pointP2= placeCheck; printf("\n::You've got bitten by a snake D: . Your new place: %d", pointP2);}
                 break;
             }
         }
 
-
+        printf("\n\n::Player 1 place: %d ::\n::Player 2 place: %d ::\n\n", pointP1, pointP2);
+        display(pointP1, pointP2);
         turn = !turn;
         if (pointP1 >= 100){printf("\n\n$$     Player 1 WINS!!!     $$");gameOn=0;}
         if (pointP2 >= 100){printf("\n\n$$     Player 2 WINS!!!     $$");gameOn=0;}
+        placeCheck = check_snake_ladder(pointP2);
+                if (placeCheck>pointP2){pointP2= placeCheck; printf("\n::You climbed the ladder :D . Your new place: %d\n\n", pointP2);}
+                if (placeCheck<pointP2){pointP2= placeCheck; printf("\n::You've got bitten by a snake D: . Your new place: %d\n\n", pointP2);}
+        placeCheck = check_snake_ladder(pointP1);
+                if (placeCheck>pointP1){pointP1= placeCheck; printf("\n::You climbed the ladder :D . Your new place: %d\n\n", pointP1);}
+                if (placeCheck<pointP1){pointP1= placeCheck; printf("\n::You've got bitten by a snake D: . Your new place: %d\n\n", pointP1);}
     }
     while(gameOn);
 
@@ -114,4 +116,15 @@ int check_snake_ladder(int playerPoint)
     }
 
     return (playerPoint);
+}
+
+void display(int pointP1, int pointP2)
+{
+    int i, j;
+
+    for(i=1;i<101;i++)
+    {
+        if (i == pointP1){printf("*P1 ");}else if (i == pointP2){printf("*P2 ");}else{printf("%02d  ", i);}
+        if (i%10==0){printf("\n");}
+    }
 }
